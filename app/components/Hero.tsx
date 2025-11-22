@@ -99,15 +99,7 @@ export const Hero: React.FC = () => {
 
   return (
     <>
-      {/* ================= NAVBAR (Now correctly hooked to modal) ================= */}
-      <FloatingNav
-        navItems={[
-          { name: "RecriX", link: "/" },
-          { name: "About", link: "#about" },
-          { name: "Contact us", link: "#contact" },
-        ]}
-        onOpenWaitlist={() => setOpenModal(true)} // ⬅️ THIS MAKES THE NAV BUTTON OPEN THE SAME MODAL
-      />
+      
 
       {/* ================= HERO SECTION ================= */}
       <section
