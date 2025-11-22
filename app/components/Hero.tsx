@@ -7,7 +7,7 @@ import Particles from "react-tsparticles";
 import type { Engine, Container } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim";
 
-import { IconHome, IconUser, IconMessage } from "@tabler/icons-react";  // ✅ ADDED
+import { IconHome, IconUser, IconMessage } from "@tabler/icons-react";
 import { FloatingNav } from "./ui/floating-navbar";
 
 export const Hero: React.FC = () => {
@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
     offset: ["start start", "end start"],
   });
 
-  // 🔥 LISTEN for Navbar → open modal event
+  // Listen for navbar → open waitlist modal event
   useEffect(() => {
     const handler = () => setOpenModal(true);
     window.addEventListener("open-waitlist-modal", handler);
@@ -105,7 +105,7 @@ export const Hero: React.FC = () => {
 
   return (
     <>
-      {/* 🔥 NAVBAR WITH ICONS ADDED */}
+      {/* Floating Navbar */}
       <FloatingNav
         navItems={[
           {
@@ -164,7 +164,7 @@ export const Hero: React.FC = () => {
           }}
         />
 
-        {/* MAIN HERO CONTENT */}
+        {/* HERO TEXT */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -179,8 +179,8 @@ export const Hero: React.FC = () => {
             <p className="max-w-3xl text-lg md:text-2xl text-gray-700 leading-relaxed">
               Outsource interviews to verified professionals.
               <br />
-              RecriX handles scheduling, secure video interviews, anti-cheat, and AI-generated reports —
-              all in one platform.
+              RecriX handles scheduling, secure video interviews, anti-cheat,
+              and AI-generated reports — all in one platform.
             </p>
 
             {/* CTA BUTTONS */}
@@ -202,7 +202,7 @@ export const Hero: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* IMAGES */}
+        {/* LEFT IMAGE */}
         <motion.div
           className="absolute bottom-0 left-0 mb-6 ml-8 hidden md:block"
           initial={{ opacity: 0, y: 20 }}
@@ -217,6 +217,7 @@ export const Hero: React.FC = () => {
           />
         </motion.div>
 
+        {/* RIGHT IMAGE */}
         <motion.div
           className="absolute bottom-0 right-0 mb-6 mr-8 hidden md:block"
           initial={{ opacity: 0, y: 20 }}
@@ -244,10 +245,7 @@ export const Hero: React.FC = () => {
               Join the RecriX Waitlist
             </h2>
 
-            <form
-              onSubmit={handleWaitlistSubmit}
-              className="flex flex-col gap-4"
-            >
+            <form onSubmit={handleWaitlistSubmit} className="flex flex-col gap-4">
               <input
                 type="text"
                 placeholder="Full Name"
@@ -288,7 +286,7 @@ export const Hero: React.FC = () => {
         </div>
       )}
 
-      {/* INTERVIEWER MODAL */}
+      {/* FULL RESTORED INTERVIEWER MODAL */}
       {openInterviewerModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-md">
           <motion.div
@@ -300,81 +298,90 @@ export const Hero: React.FC = () => {
               Become a RecriX Interviewer
             </h2>
 
-            <form
-              onSubmit={handleInterviewerSubmit}
-              className="flex flex-col gap-4"
-            >
+            <form onSubmit={handleInterviewerSubmit} className="flex flex-col gap-4">
+
               <input
                 type="text"
-                required
                 placeholder="Full Name"
-                className="px-4 py-3 border rounded-lg"
+                required
+                className="px-4 py-3 border border-gray-200 rounded-lg"
                 value={interviewerForm.name}
                 onChange={(e) =>
-                  setInterviewerForm({
-                    ...interviewerForm,
-                    name: e.target.value,
-                  })
+                  setInterviewerForm({ ...interviewerForm, name: e.target.value })
                 }
               />
 
               <input
                 type="email"
-                required
                 placeholder="Work Email"
-                className="px-4 py-3 border rounded-lg"
+                required
+                className="px-4 py-3 border border-gray-200 rounded-lg"
                 value={interviewerForm.email}
                 onChange={(e) =>
-                  setInterviewerForm({
-                    ...interviewerForm,
-                    email: e.target.value,
-                  })
+                  setInterviewerForm({ ...interviewerForm, email: e.target.value })
                 }
               />
 
               <input
                 type="text"
+                placeholder="Primary Skills (e.g. Frontend, Data Science, HR)"
                 required
-                placeholder="Skills"
-                className="px-4 py-3 border rounded-lg"
+                className="px-4 py-3 border border-gray-200 rounded-lg"
                 value={interviewerForm.skills}
                 onChange={(e) =>
-                  setInterviewerForm({
-                    ...interviewerForm,
-                    skills: e.target.value,
-                  })
+                  setInterviewerForm({ ...interviewerForm, skills: e.target.value })
                 }
               />
 
               <input
                 type="number"
+                placeholder="Years of Experience"
                 required
-                placeholder="Experience"
-                className="px-4 py-3 border rounded-lg"
+                className="px-4 py-3 border border-gray-200 rounded-lg"
                 value={interviewerForm.experience}
                 onChange={(e) =>
-                  setInterviewerForm({
-                    ...interviewerForm,
-                    experience: e.target.value,
-                  })
+                  setInterviewerForm({ ...interviewerForm, experience: e.target.value })
+                }
+              />
+
+              <input
+                type="text"
+                placeholder="LinkedIn Profile (optional)"
+                className="px-4 py-3 border border-gray-200 rounded-lg"
+                value={interviewerForm.linkedin}
+                onChange={(e) =>
+                  setInterviewerForm({ ...interviewerForm, linkedin: e.target.value })
                 }
               />
 
               <textarea
-                placeholder="Notes (optional)"
-                className="px-4 py-3 border rounded-lg"
+                placeholder="Additional Notes (optional)"
+                className="px-4 py-3 border border-gray-200 rounded-lg"
+                rows={3}
                 value={interviewerForm.notes}
                 onChange={(e) =>
-                  setInterviewerForm({
-                    ...interviewerForm,
-                    notes: e.target.value,
-                  })
+                  setInterviewerForm({ ...interviewerForm, notes: e.target.value })
                 }
               />
 
+              <div>
+                <label className="text-sm text-gray-700">Upload CV (PDF/Doc)</label>
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  className="mt-2 px-4 py-2 border rounded-lg w-full"
+                  onChange={(e) =>
+                    setInterviewerForm({
+                      ...interviewerForm,
+                      cv: e.target.files?.[0] || null,
+                    })
+                  }
+                />
+              </div>
+
               <button
                 type="submit"
-                className="w-full py-3 bg-emerald-600 text-white rounded-lg"
+                className="w-full py-3 mt-2 rounded-lg bg-emerald-600 text-white font-semibold"
               >
                 Submit Application
               </button>
@@ -382,7 +389,7 @@ export const Hero: React.FC = () => {
 
             <button
               onClick={() => setOpenInterviewerModal(false)}
-              className="mt-4 text-center w-full text-gray-600"
+              className="mt-4 text-center w-full text-gray-600 hover:text-gray-800 text-sm"
             >
               Cancel
             </button>
