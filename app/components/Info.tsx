@@ -41,28 +41,34 @@ export default function BentoGridThirdDemo() {
         className="bg-white rounded-2xl shadow-lg ring-1 ring-slate-100 p-6"
       >
 
-        {/* ================= MOBILE VERSION ================= */}
-        <div className="block md:hidden space-y-4">
-          {comparisonRows.map((row) => (
-            <div
-              key={row.aspect}
-              className="rounded-2xl bg-white border border-slate-200 p-4 shadow-sm"
-            >
-              <p className="text-sm font-semibold text-slate-900 mb-2">
-                {row.aspect}
-              </p>
+        {/* ================= MOBILE TABLE (REAL TABLE) ================= */}
+        <div className="block md:hidden overflow-x-auto rounded-xl border border-slate-200">
+          <table className="min-w-[600px] w-full text-sm">
+            <thead>
+              <tr className="bg-slate-50">
+                <th className="text-left py-3 px-4 text-slate-700 font-medium">Aspect</th>
+                <th className="text-left py-3 px-4 text-slate-700 font-medium">RecriX</th>
+                <th className="text-left py-3 px-4 text-slate-700 font-medium">Other Companies</th>
+              </tr>
+            </thead>
 
-              <div className="mb-2">
-                <p className="text-xs font-bold text-teal-600">RecriX</p>
-                <p className="text-sm text-slate-700 mt-1">{row.recrix}</p>
-              </div>
+            <tbody>
+              {comparisonRows.map((row, i) => (
+                <tr
+                  key={row.aspect}
+                  className={cn(i % 2 === 0 ? "bg-white" : "bg-slate-50")}
+                >
+                  <td className="py-3 px-4 font-semibold text-slate-800">
+                    {row.aspect}
+                  </td>
 
-              <div>
-                <p className="text-xs font-bold text-slate-500">Other Companies</p>
-                <p className="text-sm text-slate-600 mt-1">{row.traditional}</p>
-              </div>
-            </div>
-          ))}
+                  <td className="py-3 px-4 text-slate-700">{row.recrix}</td>
+
+                  <td className="py-3 px-4 text-slate-600">{row.traditional}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         {/* ================= DESKTOP TABLE ================= */}
