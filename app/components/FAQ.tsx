@@ -58,7 +58,7 @@ const Faq: React.FC<FaqProps> = ({ items }) => {
               {/* Animated content */}
               <div
                 className={`px-6 overflow-hidden transition-all duration-300 ${
-                  isActive ? "max-h-40 pb-5" : "max-h-0"
+                  isActive ? "max-h-[1000px] pb-5" : "max-h-0"
                 }`}
               >
                 <p className="text-slate-700 leading-relaxed">{content}</p>
